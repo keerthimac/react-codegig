@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 import Add from "./pages/Add";
 import GigList from "./pages/GigList";
@@ -10,9 +12,20 @@ import Landing from "./pages/Landing";
 function App() {
   const [gigs, setGigs] = useState([]);
 
-  const getGigs = (gig) => {
-    setGigs([gig, ...gigs]);
+  useEffect(() => {
+    getGigs();
+  }, []);
+
+  const getGigs = async (gig) => {
+    // setGigs([gig, ...gigs]); // via state
+
+    //fetch data json server
+    const response = await fetch("/gigs");
+    const data = await response.json();
+    console.log(data);
+    setGigs([data, ...gigs]);
   };
+
   return (
     <Router>
       <Routes>
