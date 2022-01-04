@@ -1,11 +1,14 @@
 {
   "dependencies": {
+    "concurrently": "^6.5.1",
     "express": "^4.17.2",
     "mysql2": "^2.3.3",
     "sequelize": "^7.0.0-alpha.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "client": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "name": "react-codegig",
   "version": "1.0.0",

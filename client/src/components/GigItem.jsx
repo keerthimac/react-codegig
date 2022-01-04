@@ -1,4 +1,6 @@
 const GigItem = ({ gig }) => {
+  console.log(gig);
+
   return (
     <div>
       <div className='gig'>

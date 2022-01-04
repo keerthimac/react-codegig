@@ -41,12 +41,12 @@
       "contact_email": "keerthi.mac@gmail.com"
     },
     {
-      "id": 10,
-      "title": "fdvzsxdfdf",
-      "technologies": "sdfsdfsdf",
-      "description": "weerdfsefrwaerf",
-      "budget": "$131234123",
-      "contact_email": "keerthi.mac@gmail.com"
+      "title": "testing",
+      "technologies": "testing",
+      "budget": "1000",
+      "description": "testing",
+      "email": "keerthi.mac@gmail.com",
+      "id": 10
     }
   ]
 }

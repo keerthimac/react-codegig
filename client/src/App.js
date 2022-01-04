@@ -16,14 +16,31 @@ function App() {
     getGigs();
   }, []);
 
-  const getGigs = async (gig) => {
+  const getGigs = async () => {
     // setGigs([gig, ...gigs]); // via state
+
+    console.log(gigs);
 
     //fetch data json server
     const response = await fetch("/gigs");
     const data = await response.json();
+    console.log(response);
     console.log(data);
-    setGigs([data, ...gigs]);
+    setGigs(data);
+  };
+
+  const addNewGigs = async (gig) => {
+    const response = await fetch("/gigs/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(gig),
+    });
+    // console.log(response);
+    const data = await response.json();
+    console.log(data);
+    //setGigs([data, ...gigs]);
   };
 
   return (
@@ -54,7 +71,7 @@ function App() {
           element={
             <>
               <HeaderStyled />
-              <Add getGigs={getGigs} />
+              <Add addNewGigs={addNewGigs} />
             </>
           }
         />

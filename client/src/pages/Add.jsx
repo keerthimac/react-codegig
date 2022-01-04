@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
-function Add({ getGigs }) {
+function Add({ addNewGigs }) {
   const [title, setTitle] = useState("");
   const [technologies, setTechnologies] = useState("");
   const [budget, setBudget] = useState("");
@@ -14,14 +14,13 @@ function Add({ getGigs }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newGig = {
-      id: uuidv4(),
       title,
       technologies,
       budget,
       description,
       email,
     };
-    getGigs(newGig);
+    addNewGigs(newGig);
     setTitle("");
     setTechnologies("");
     setBudget("");
