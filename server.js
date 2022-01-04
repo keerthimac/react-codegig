@@ -9,6 +9,9 @@ const db = require("./config/database");
 // .then(()=>console.log('Connection has been established successfully.'))
 // .catch (err=>console.error('Unable to connect to the database:', err))
 
+
+
+
 //Test db option 02
 try {
   db.authenticate();
@@ -18,6 +21,9 @@ try {
 }
 
 const app = express();
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 //Gig Routes
 app.use("/gigs", require("./routes/gigs")); //Middleware - run between request and responce

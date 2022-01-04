@@ -30,7 +30,7 @@ function App() {
   };
 
   const addNewGigs = async (gig) => {
-    const response = await fetch("/gigs/add", {
+    const response = await fetch("/gigs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +40,7 @@ function App() {
     // console.log(response);
     const data = await response.json();
     console.log(data);
-    //setGigs([data, ...gigs]);
+    setGigs([data, ...gigs]);
   };
 
   return (
