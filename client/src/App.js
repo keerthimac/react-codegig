@@ -19,13 +19,13 @@ function App() {
   const getGigs = async () => {
     // setGigs([gig, ...gigs]); // via state
 
-    console.log(gigs);
+    //console.log(gigs);
 
     //fetch data json server
     const response = await fetch("/gigs");
     const data = await response.json();
-    console.log(response);
-    console.log(data);
+    //console.log(response);
+    //console.log(data);
     setGigs(data);
   };
 
