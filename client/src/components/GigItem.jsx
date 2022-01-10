@@ -4,6 +4,7 @@ const GigItem = ({ gig }) => {
   return (
     <div>
       <div className='gig'>
+        <button className='del-gig'>X</button>
         <h3>{gig.title}</h3>
         <p>{gig.description}</p>
         <ul>
