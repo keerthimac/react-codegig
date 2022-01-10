@@ -43,6 +43,15 @@ function App() {
     setGigs([data, ...gigs]);
   };
 
+  const deleteGig = async (id) => {
+    const response = await fetch(`/gigs/${id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    console.log(data);
+    setGigs(gigs.filter((gig) => gig.id !== id));
+  };
+
   return (
     <Router>
       <Routes>
@@ -61,7 +70,7 @@ function App() {
           element={
             <>
               <HeaderStyled />
-              <GigList gigs={gigs} />
+              <GigList gigs={gigs} deleteGig={deleteGig} />
             </>
           }
         />

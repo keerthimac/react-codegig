@@ -1,6 +1,6 @@
 import GigItem from "../components/GigItem";
 
-function GigList({ gigs }) {
+function GigList({ gigs, deleteGig }) {
   console.log(gigs);
   return (
     <div>
@@ -14,7 +14,7 @@ function GigList({ gigs }) {
         ) : (
           <div>
             {gigs.map((gig) => (
-              <GigItem key={gig.id} gig={gig} />
+              <GigItem key={gig.id} gig={gig} deleteGig={deleteGig} />
             ))}
           </div>
         )}

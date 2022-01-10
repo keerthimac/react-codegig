@@ -1,10 +1,17 @@
-const GigItem = ({ gig }) => {
+const GigItem = ({ gig, deleteGig }) => {
   console.log(gig);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    deleteGig(gig.id);
+  };
 
   return (
     <div>
       <div className='gig'>
-        <button className='del-gig'>X</button>
+        <button onClick={handleClick} className='del-gig'>
+          X
+        </button>
         <h3>{gig.title}</h3>
         <p>{gig.description}</p>
         <ul>

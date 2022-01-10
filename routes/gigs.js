@@ -50,11 +50,11 @@ router.post("/", (req, res) => {
   if (errors.length > 0) {
     res.send({
       errors,
-      title,
-      technologies,
-      budget,
-      description,
-      email,
+      // title,
+      // technologies,
+      // budget,
+      // description,
+      // email,
     });
   } else {
     if (!budget) {
@@ -80,6 +80,25 @@ router.post("/", (req, res) => {
       })
       .catch((err) => console.log(err));
   }
+});
+
+router.delete("/:id", (req, res) => {
+  Gig.findOne({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((gig) => {
+      if (gig) {
+        gig.destroy();
+        res.send(gig);
+      } else {
+        res.send({
+          error: "Gig not found",
+        });
+      }
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;
