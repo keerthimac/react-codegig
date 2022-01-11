@@ -2,6 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 import AlertItem from "../components/AlertItem";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Add({ addNewGigs, alerts }) {
   const [title, setTitle] = useState("");
@@ -53,10 +54,19 @@ function Add({ addNewGigs, alerts }) {
             Your contact email will be shared with registered users to apply to
             your gig
           </p>
-
-          {alerts.length > 0 &&
-            alerts.map((alert) => <AlertItem key={uuidv4()} alert={alert} />)}
-
+          <AnimatePresence>
+            {alerts.length > 0 &&
+              alerts.map((alert) => (
+                <motion.div
+                  key={uuidv4()}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}>
+                  <AlertItem key={uuidv4()} alert={alert} />
+                </motion.div>
+              ))}
+          </AnimatePresence>
           {/* {alerts ? alerts.map((alert =>{<div class="error">{alert.text}</div>})):console.log('test')} */}
 
           <form action='/gigs/add' onSubmit={handleSubmit}>

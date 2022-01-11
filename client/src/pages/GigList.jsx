@@ -1,4 +1,5 @@
 import GigItem from "../components/GigItem";
+import { motion, AnimatePresence } from "framer-motion";
 
 function GigList({ gigs, deleteGig }) {
   //console.log(gigs);
@@ -6,16 +7,23 @@ function GigList({ gigs, deleteGig }) {
     <div>
       <section id='gigs' className='container'>
         <h1>All Gigs</h1>
-        {/* {{#each gigs}} */}
 
-        {/* {{else}} */}
         {gigs.length === 0 ? ( // if no gigs
           <p>No gigs available</p>
         ) : (
           <div>
-            {gigs.map((gig) => (
-              <GigItem key={gig.id} gig={gig} deleteGig={deleteGig} />
-            ))}
+            <AnimatePresence>
+              {gigs.map((gig) => (
+                <motion.div
+                  key={gig.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}>
+                  <GigItem key={gig.id} gig={gig} deleteGig={deleteGig} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
         )}
 
