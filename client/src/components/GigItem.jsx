@@ -1,5 +1,5 @@
 const GigItem = ({ gig, deleteGig }) => {
-  console.log(gig);
+  //console.log(gig);
 
   const handleClick = (e) => {
     e.preventDefault();

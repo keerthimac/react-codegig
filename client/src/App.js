@@ -11,6 +11,7 @@ import Landing from "./pages/Landing";
 
 function App() {
   const [gigs, setGigs] = useState([]);
+  const [alerts, setAlerts] = useState([]);
 
   useEffect(() => {
     getGigs();
@@ -39,8 +40,16 @@ function App() {
     });
     // console.log(response);
     const data = await response.json();
-    console.log(data);
-    setGigs([data, ...gigs]);
+    //console.log(data);
+    if (data.errors) {
+      setAlerts(data.errors, ...alerts);
+      // data.errors.forEach((error) => {
+      //   console.log(error);
+      // });
+    } else {
+      setGigs([data, ...gigs]);
+      setAlerts([]);
+    }
   };
 
   const deleteGig = async (id) => {
@@ -48,9 +57,11 @@ function App() {
       method: "DELETE",
     });
     const data = await response.json();
-    console.log(data);
+    //console.log(data);
     setGigs(gigs.filter((gig) => gig.id !== id));
   };
+
+  //set alert with timeout
 
   return (
     <Router>
@@ -80,7 +91,7 @@ function App() {
           element={
             <>
               <HeaderStyled />
-              <Add addNewGigs={addNewGigs} />
+              <Add addNewGigs={addNewGigs} alerts={alerts} />
             </>
           }
         />

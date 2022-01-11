@@ -1,7 +1,7 @@
 import GigItem from "../components/GigItem";
 
 function GigList({ gigs, deleteGig }) {
-  console.log(gigs);
+  //console.log(gigs);
   return (
     <div>
       <section id='gigs' className='container'>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
-function Add({ addNewGigs }) {
+function Add({ addNewGigs, alerts }) {
   const [title, setTitle] = useState("");
   const [technologies, setTechnologies] = useState("");
   const [budget, setBudget] = useState("");
@@ -21,13 +21,16 @@ function Add({ addNewGigs }) {
       email,
     };
     addNewGigs(newGig);
+    // alerts.forEach((alert) => {
+    //   console.log(alert);
+    // });
     setTitle("");
     setTechnologies("");
     setBudget("");
     setDescription("");
     setEmail("");
     //navigate to homepage after adding a gig
-    navigate("/gigs");
+    //navigate("/gigs");
   };
 
   return (
