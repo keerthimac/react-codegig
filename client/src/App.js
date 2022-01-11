@@ -42,7 +42,10 @@ function App() {
     const data = await response.json();
     //console.log(data);
     if (data.errors) {
-      setAlerts(data.errors, ...alerts);
+      setAlerts(...alerts, data.errors);
+      setTimeout(() => {
+        setAlerts([]);
+      }, 3000);
       // data.errors.forEach((error) => {
       //   console.log(error);
       // });

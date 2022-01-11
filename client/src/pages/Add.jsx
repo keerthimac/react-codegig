@@ -22,11 +22,18 @@ function Add({ addNewGigs, alerts }) {
       email,
     };
     addNewGigs(newGig);
-    if(alerts.length>0){
+    if (
+      alerts.length > 0 ||
+      title === "" ||
+      technologies === "" ||
+      budget === "" ||
+      description === "" ||
+      email === ""
+    ) {
       alerts.forEach((alert) => {
         console.log(alert.text);
       });
-    }else{
+    } else {
       setTitle("");
       setTechnologies("");
       setBudget("");
@@ -35,7 +42,6 @@ function Add({ addNewGigs, alerts }) {
       //navigate to homepage after adding a gig
       navigate("/gigs");
     }
-
   };
 
   return (
@@ -49,12 +55,9 @@ function Add({ addNewGigs, alerts }) {
           </p>
 
           {alerts.length > 0 &&
-            alerts.map((alert) => (
-              <AlertItem key={uuidv4()} alert={alert} />
-            ))}
-          
+            alerts.map((alert) => <AlertItem key={uuidv4()} alert={alert} />)}
+
           {/* {alerts ? alerts.map((alert =>{<div class="error">{alert.text}</div>})):console.log('test')} */}
-          
 
           <form action='/gigs/add' onSubmit={handleSubmit}>
             <div className='input-group'>

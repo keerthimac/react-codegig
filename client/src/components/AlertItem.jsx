@@ -1,10 +1,9 @@
-
-function AlertItem({alert}) {
-    return (
-        <div>
-            <div class="error">{alert.text}</div>
-        </div>
-    )
+function AlertItem({ alert }) {
+  return (
+    <div>
+      <div className='error'>{alert.text}</div>
+    </div>
+  );
 }
 
-export default AlertItem
+export default AlertItem;
