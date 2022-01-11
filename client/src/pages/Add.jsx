@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import AlertItem from "../components/AlertItem";
 
 function Add({ addNewGigs, alerts }) {
   const [title, setTitle] = useState("");
@@ -21,16 +22,20 @@ function Add({ addNewGigs, alerts }) {
       email,
     };
     addNewGigs(newGig);
-    // alerts.forEach((alert) => {
-    //   console.log(alert);
-    // });
-    setTitle("");
-    setTechnologies("");
-    setBudget("");
-    setDescription("");
-    setEmail("");
-    //navigate to homepage after adding a gig
-    //navigate("/gigs");
+    if(alerts.length>0){
+      alerts.forEach((alert) => {
+        console.log(alert.text);
+      });
+    }else{
+      setTitle("");
+      setTechnologies("");
+      setBudget("");
+      setDescription("");
+      setEmail("");
+      //navigate to homepage after adding a gig
+      navigate("/gigs");
+    }
+
   };
 
   return (
@@ -43,12 +48,14 @@ function Add({ addNewGigs, alerts }) {
             your gig
           </p>
 
-          {/* Error Handling Component */}
-          {/* {{#each errors}} */}
-          {/* <div className='error'>{{ text }}</div> */}
-          {/* {{/each}} */}
+          {alerts.length > 0 &&
+            alerts.map((alert) => (
+              <AlertItem key={uuidv4()} alert={alert} />
+            ))}
+          
+          {/* {alerts ? alerts.map((alert =>{<div class="error">{alert.text}</div>})):console.log('test')} */}
+          
 
-          {/* Form Start here */}
           <form action='/gigs/add' onSubmit={handleSubmit}>
             <div className='input-group'>
               <label htmlFor='title'>Gig Title</label>
